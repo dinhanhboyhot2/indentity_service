@@ -24,7 +24,13 @@ public class UserService {
         user.setDob(request.getDob());
         return userRepository.save(user);
     }
+
     public List<User> getUser(){
         return userRepository.findAll();
+    }
+
+    public User getUserId(String id){
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 }
