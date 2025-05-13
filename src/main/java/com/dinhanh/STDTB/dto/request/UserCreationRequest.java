@@ -1,12 +1,16 @@
 package com.dinhanh.STDTB.dto.request;
 
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
 public class UserCreationRequest {
     private String Id;
+    @Size(min = 8, message ="Username nust be at least 8 character")
     private String username;
+
+    @Size(min = 8, message ="Password nust be at least 8 character")
     private String password;
     private String firstName;
     private String lastName;

@@ -4,6 +4,7 @@ import com.dinhanh.STDTB.dto.request.UserCreationRequest;
 import com.dinhanh.STDTB.dto.request.UserUpdateRequest;
 import com.dinhanh.STDTB.entity.User;
 import com.dinhanh.STDTB.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    User createUser(@RequestBody UserCreationRequest request) {
+    User createUser(@RequestBody @Valid UserCreationRequest request) {
         return userService.createUser(request);
     }
 
