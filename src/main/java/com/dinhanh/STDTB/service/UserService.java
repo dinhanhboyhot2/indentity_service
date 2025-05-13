@@ -1,5 +1,6 @@
 package com.dinhanh.STDTB.service;
 import com.dinhanh.STDTB.dto.request.UserCreationRequest;
+import com.dinhanh.STDTB.dto.request.UserUpdateRequest;
 import com.dinhanh.STDTB.entity.User;
 import com.dinhanh.STDTB.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,16 @@ public class UserService {
     }
 
     public User getUserId(String id){
-        return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+    }
+    public User updateUser(String userID,UserUpdateRequest request){
+        User user = getUserId(userID);
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
+        user.setDob(request.getDob());
+        return userRepository.save(user);
+    }
+    public void deleteUser(String userID){
+        userRepository.deleteById(userID);
     }
 }
