@@ -1,5 +1,6 @@
 package com.dinhanh.STDTB.controller;
 
+import com.dinhanh.STDTB.dto.request.ApiResponse;
 import com.dinhanh.STDTB.dto.request.UserCreationRequest;
 import com.dinhanh.STDTB.dto.request.UserUpdateRequest;
 import com.dinhanh.STDTB.entity.User;
@@ -18,8 +19,10 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    User createUser(@RequestBody @Valid UserCreationRequest request) {
-        return userService.createUser(request);
+    ApiResponse<User> createUser(@RequestBody @Valid UserCreationRequest request) {
+        ApiResponse<User> apiResponse = new ApiResponse<>();
+        apiResponse.setResult(userService.createUser(request));
+        return apiResponse;
     }
 
     @GetMapping("/users")
